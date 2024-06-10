@@ -1,12 +1,37 @@
+body{
+    background: rgba(135, 199, 252, 0.158) ;
+}
 
-/* 
-
-    You can write your own styles here...
+.container{
+    margin-top: 80px;
+   
+}
+.tittle{
+    text-align: center;
+}
+ul li{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.clickme{
+display: flex;
+justify-content: center;
+margin: auto;
+background: rgb(240, 183, 227) ;
+transition: 2;
+}
+.clickme:hover{
+    box-shadow: 10px 10px 10px 10px rgb(135, 199, 252);
+    color: rgb(28, 88, 199);
+}
+.x{
+    border-radius: 10px;
+    margin-left: 100px;
+    transition: 2;
+    background:  rgb(240, 183, 227)
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+}
+.x:hover{
+    background: red;
+}
