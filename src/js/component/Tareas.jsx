@@ -35,6 +35,7 @@ const Tareas = () => {
             })
 
             const result = await response.json()
+            getList()
         } catch (error) {
             console.log(error)
         }
@@ -84,7 +85,7 @@ useEffect(() => {
 },[])
 
 
-    const deleteList = async () => {
+    const deleteList = async (id) => {
         try {
             const response = await fetch (`https://playground.4geeks.com/todo/todos/${id}`, {
                 method: "DELETE",
@@ -93,9 +94,8 @@ useEffect(() => {
                 }
                 
             })
-            const result = await response.json()
-            setTodos(false)
-            setTareasValue('')
+            const result = await response.text()
+            getList()
             console.log(result)
         } catch (error) {
             console.log(error)
@@ -133,7 +133,7 @@ useEffect(() => {
                         return (
                             <li key={index}>{todo.label}
 
-                                <button className="x" onClick={() => todos === is_done ? deleteList() : handleDelete()}>x</button>
+                                <button className="x" onClick={() => deleteList(todo.id)}>x</button>
                                 
                             </li>
                         )
