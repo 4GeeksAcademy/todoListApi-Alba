@@ -35,3 +35,8 @@ transition: 2;
 .x:hover{
     background: red;
 }
+li{
+    display: flex;
+    justify-content: center;
+    
+}

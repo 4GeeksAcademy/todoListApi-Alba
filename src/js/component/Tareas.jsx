@@ -18,6 +18,33 @@ const Tareas = () => {
         setTodos(newArray)
     }
 
+    const [user, setUser] = useState ("");
+
+    const createUser = async () =>{
+        try {
+            const response = await fetch ('https://playground.4geeks.com/todo/users/Alba',{
+                method: "POST",
+                headers: {
+                    "accept": "application/json"
+                }
+            })
+            const result = await response.json()
+            console.log(result)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getUser = async () =>{
+        try {
+            const response = await fetch ('https://playground.4geeks.com/todo/users/Alba')
+            const result = await response.json()
+            if(!result == ok){
+                createUser()
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const TodoListF = async () => {
         try {
             const bodyToDo = {
@@ -82,6 +109,7 @@ const Tareas = () => {
 
 useEffect(() => {
     getList()
+    getUser()
 },[])
 
 
@@ -109,6 +137,20 @@ useEffect(() => {
 
         <div className="container">
             <h1 className="tittle">ToDos</h1>
+            <li>
+                <input
+                type="text"
+                value={user}
+                onChange={(event) => setUser(event.target.value)}
+                onKeyDown={(event) => {
+                    if(event.key === "Enter"){
+                        getUser()
+                    }
+                }}
+                placeholder="add user">
+               
+                </input>
+            </li>
 
             <ul>
                 <li>
@@ -122,9 +164,7 @@ useEffect(() => {
                                 
                                 agregarNuevaAlerta()
                             }
-                            // if(tareasValue === is_done){
-                            //     putList()
-                            // }
+                          
                         }}
                         placeholder="What do I need to do?"></input>
                 </li>
