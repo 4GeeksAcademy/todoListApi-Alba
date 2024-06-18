@@ -19,16 +19,19 @@ const Tareas = () => {
     }
 
     const [user, setUser] = useState ("");
+    const [userName, setUserName] = useState ('');
 
     const createUser = async () =>{
         try {
-            const response = await fetch ('https://playground.4geeks.com/todo/users/Alba',{
+            const response = await fetch (`https://playground.4geeks.com/todo/users/${user}`,{
                 method: "POST",
                 headers: {
                     "accept": "application/json"
                 }
             })
             const result = await response.json()
+            setUserName(user)
+            setUser('')
             console.log(result)
         } catch (error) {
             console.log(error);
@@ -137,6 +140,7 @@ useEffect(() => {
 
         <div className="container">
             <h1 className="tittle">ToDos</h1>
+                <p>{userName}</p>
             <li>
                 <input
                 type="text"
@@ -144,12 +148,14 @@ useEffect(() => {
                 onChange={(event) => setUser(event.target.value)}
                 onKeyDown={(event) => {
                     if(event.key === "Enter"){
-                        getUser()
+                        createUser()
                     }
                 }}
                 placeholder="add user">
+                
                
                 </input>
+                
             </li>
 
             <ul>
