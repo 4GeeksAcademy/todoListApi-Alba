@@ -140,7 +140,7 @@ useEffect(() => {
 
         <div className="container">
             <h1 className="tittle">ToDos</h1>
-                <p>{userName}</p>
+                <p className="d-flex justify-content-center">{userName}</p>
             <li>
                 <input
                 type="text"
@@ -174,7 +174,7 @@ useEffect(() => {
                         }}
                         placeholder="What do I need to do?"></input>
                 </li>
-                { todos.length > 0 ? ( 
+                {todos.length > 0 ? ( 
                     todos.map((todo, index) => {
                         return (
                             <li key={index}>{todo.label}
