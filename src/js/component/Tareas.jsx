@@ -115,6 +115,10 @@ useEffect(() => {
     getUser()
 },[])
 
+useEffect(() => {
+	createUser()
+},[])
+	
 
     const deleteList = async (id) => {
         try {
@@ -175,7 +179,7 @@ useEffect(() => {
                         placeholder="What do I need to do?"></input>
                 </li>
                 {todos.length > 0 ? ( 
-                    todos.map((todo, index) => {
+                    todos?.map((todo, index) => {
                         return (
                             <li key={index}>{todo.label}
 
