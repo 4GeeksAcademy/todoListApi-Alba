@@ -9,6 +9,7 @@ const Tareas = () => {
     const agregarNuevaAlerta = () => {
         setTodos(todos.concat([tareasValue]))
         setTareasValue("")
+        TodoListF()
         alert("tarea guardada")
 
     }
@@ -23,7 +24,7 @@ const Tareas = () => {
 
     const createUser = async () =>{
         try {
-            const response = await fetch (`https://playground.4geeks.com/todo/users/${user}`,{
+            const response = await fetch ('https://playground.4geeks.com/todo/users/Alba',{
                 method: "POST",
                 headers: {
                     "accept": "application/json"
@@ -32,18 +33,17 @@ const Tareas = () => {
             const result = await response.json()
             setUserName(user)
             setUser('')
+            getUser()
             console.log(result)
         } catch (error) {
-            console.log(error);
+            console.log(error, "error user");
         }
     }
     const getUser = async () =>{
         try {
-            const response = await fetch ('https://playground.4geeks.com/todo/users/Alba')
+            const response = await fetch (`https://playground.4geeks.com/todo/users/${user}`)
             const result = await response.json()
-            if(!result == ok){
-                createUser()
-            }
+            
         } catch (error) {
             console.log(error);
         }
@@ -115,10 +115,8 @@ useEffect(() => {
     getUser()
 },[])
 
-useEffect(() => {
-	createUser()
-},[])
-	
+
+
 
     const deleteList = async (id) => {
         try {
@@ -170,7 +168,7 @@ useEffect(() => {
                         value={tareasValue}
                         onKeyDown={(event) => {
                             if (event.key === "Enter") {
-                                TodoListF()
+                                
                                 
                                 agregarNuevaAlerta()
                             }
